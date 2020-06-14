@@ -3,19 +3,25 @@ import styled from 'styled-components';
 import Theme from './Theme';
 import Header from './Header';
 import Description from './Description';
+import Links from './Links';
+import StaticBlock from './StaticBlock';
+
+const Container = styled.div`
+    width: 1440px;
+    background-color: #fff;
+    margin: 0 auto;
+`;
 
 const App = () => {
-    const Container = styled.div`
-        width: 1440px;
-        background-color: #fff;
-        margin: 0 auto;
-    `;
+    
 
     return (
         <Theme>
             <Container>
                 {/* <Header /> */}
-                <Description />
+                {/* <Description /> */}
+                {/* <Links /> */}
+                <StaticBlock />
             </Container>
         </Theme>
     );
