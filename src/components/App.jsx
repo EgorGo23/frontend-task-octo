@@ -4,7 +4,7 @@ import Theme from './Theme';
 import Header from './Header';
 import Description from './Description';
 import Links from './Links';
-import StaticBlock from './StaticBlock';
+import Static from './Static';
 
 const Container = styled.div`
     width: 1440px;
@@ -13,15 +13,13 @@ const Container = styled.div`
 `;
 
 const App = () => {
-    
-
     return (
         <Theme>
             <Container>
                 {/* <Header /> */}
                 {/* <Description /> */}
                 {/* <Links /> */}
-                <StaticBlock />
+                <Static />               
             </Container>
         </Theme>
     );

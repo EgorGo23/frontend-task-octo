@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from "styled-components";
 import highlightWords from '../helpers/highlightWords';
+import { withDataFetching } from './hoc';
 
 const DescriptionContainer = styled.section`
     position: relative;
@@ -56,38 +57,22 @@ const Aside = styled.aside`
 `;
 
 
-const Description = () => {
+const Description = ({dataFetching}) => {
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
-    const [isLoading, setIsLoading] = useState(false);
-    const [isError, setIsError] = useState(false);
-
+    
     useEffect(() => {
-        const fetchData = async () => {
-            setIsError(false);
-            setIsLoading(true);
-
-            try {
-                const response = await fetch('https://test.octweb.ru/api/pages/index/');
-                const body = await response.json();
-
-                setTitle(body.title);
-                setContent(highlightWords(body.content, ['HOC', 'API']));
-            } catch (error) {
-                setIsError(true);
-            }
-
-            setIsLoading(false);
+        if (dataFetching.data) {
+            setTitle(dataFetching.data.name);
+            setContent(dataFetching.data.content);
         }
-
-        fetchData();
-    }, []);
+    }, [dataFetching.data]);
 
     return (
         <DescriptionContainer>
             <Title>{title}</Title>
             <Content>
-                <div dangerouslySetInnerHTML={{ __html: `${content}` }} />
+                <div dangerouslySetInnerHTML={{ __html: `${highlightWords(content, ['HOC', 'API'])}` }} />
 
                 <Aside>
                     <p>Этот блок с описанием тоже нужно сверстать. Специально использовали разные стили и текстовые блоки, даже если они порой неуместны</p>
@@ -98,4 +83,4 @@ const Description = () => {
     )
 }
 
-export default Description;
+export default withDataFetching(Description)();

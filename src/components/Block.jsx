@@ -1,18 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import highlightWords from '../helpers/highlightWords';
-import Static from './Static';
+import { withDataFetching } from './hoc';
 
 const Title = styled.h3`
-    font-size: ${(props) => {
-        console.log(props);
-    }};
     font-size: ${(props) => props.theme.fontSizes.large};
     font-weight: ${props => props.theme.fontWeights.bold};
     line-height: 120%;
     margin-bottom: 18px;
 `;
-
+    
 const Content = styled.div`
     font-size: ${(props) => props.theme.fontSizes.sm};
     font-weight: ${props => props.theme.fontWeights.normal};
@@ -28,20 +25,18 @@ const Content = styled.div`
     }
 `;
 
-const StaticBlock = (props) => {
-    
-    const pr = {
-        'Egor': '24',
-    }
+const Block = (props) => {
+    console.log(props);
     return (
-        <Static data={pr}>
+        <>
             <Title></Title>
             <Content>
                 {/* <div dangerouslySetInnerHTML={{ __html: `${content}` }}>
                 </div> */}
             </Content>
-        </Static>
+            
+        </>
     )
 }
 
-export default StaticBlock;
+export default Block;
