@@ -18,6 +18,23 @@ const variables = {
         hoverBlue: '#128ACE',
     },
     shadow: '0px 5px 25px rgba(0, 0, 0, 0.05)',
+    heading_styles: {
+        'common_properties': {
+            'font-family': 'Montserrat',
+            'font-style': 'normal',
+            'line-height': '120%',
+            color: '#333333',
+        },
+        'h1': {
+            'font-weight': '800',
+            'font-size': '54px',
+            
+        },
+        'h3': {
+            'font-weight': 'bold',
+            'font-size': '40px',
+        },
+    },
     link: 'https://test.octweb.ru/api/pages/index/',
 }
 

@@ -19,7 +19,7 @@ const App = () => {
                 {/* <Header /> */}
                 {/* <Description /> */}
                 {/* <Links /> */}
-                <Static />               
+                <Static />
             </Container>
         </Theme>
     );

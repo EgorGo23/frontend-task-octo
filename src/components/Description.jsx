@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styled from "styled-components";
 import highlightWords from '../helpers/highlightWords';
 import { withDataFetching } from './hoc';
+import Title from './Title';
 
 const DescriptionContainer = styled.section`
     position: relative;
@@ -15,14 +16,6 @@ const DescriptionContainer = styled.section`
     color: ${props => props.theme.colors.black};
 `;
 
-const Title = styled.h1`
-    font-size: ${(props) => props.theme.fontSizes.XXXlarge};
-    font-weight: 800;
-    width: 100%;
-    height: 65px;
-    margin-bottom: 30px;
-    line-height: 120%;
-`;
 
 const Content = styled.div`
     display: flex;
@@ -70,7 +63,7 @@ const Description = ({dataFetching}) => {
 
     return (
         <DescriptionContainer>
-            <Title>{title}</Title>
+            <Title text={title} tag={'h1'}  style={{width: '100%', height: '65px', 'margin-bottom': '30px'}} />
             <Content>
                 <div dangerouslySetInnerHTML={{ __html: `${highlightWords(content, ['HOC', 'API'])}` }} />
 
