@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import variables from '../variables';
+import { compose } from 'recompose';
 
 export const withDataFetching = (Wrapped) => () => {
     const WithDataFetchingComponent = () => {
@@ -34,6 +35,23 @@ export const withDataFetching = (Wrapped) => () => {
     
     return WithDataFetchingComponent;
 };
+
+
+export const withGallery = (Wrapped) => (props) => {
+    const WithGallery = () => {
+        const h = 'egor'
+        
+        return (
+            <Wrapped d={h} data={props} />
+        )
+    }
+
+    return WithGallery;
+}
+
+
+
+
 
 
 

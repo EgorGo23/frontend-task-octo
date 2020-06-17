@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { withDataFetching } from './hoc';
 import Block from './Block';
-import StaticContainer from './Static';
 
 const Static = ({dataFetching}) => {
     const {data, isLoading, isError} = dataFetching;
@@ -21,33 +20,33 @@ const Static = ({dataFetching}) => {
         !isLoading && !isError && data
         && (
             <>
-                {/* <StaticContainer style={{height: '562px'}}>
+                <StaticContainer style={{height: '562px'}}>
                     <Block 
                         data={data.static_blocks[0]}
                         isGallery={true}
                         isDescription={false}
                         highlightedContentWords={['SWOT', 'VIP']}
-                        sizes={{titleSizes: {width: '603px', height: '48px'}, contentSizes:{width: '985px', height: '357px'}}}
+                        sizes={{blockSizes: {width: '100%', height: '562px', display: 'flex', flexFlow: 'column'}}}
                     /> 
-                </StaticContainer> */}
+                </StaticContainer>
 
-                <StaticContainer style={{height: '629.41px'}}>
+                {/* <StaticContainer style={{position: 'relative'}}>
                     <Block 
                         data={data.static_blocks[1]}
                         isDescription={true}
                         isGallery={false}
                         highlightedContentWords={[]}
-                        sizes={{titleSizes: {width: '507px', height: '48px'}, contentSizes:{}}}
+                        sizes={{blockSizes: {width: '1015px', height: '621px', display: 'flex', flexFlow: 'column'}}}
                     /> 
-                </StaticContainer>
+                </StaticContainer> */}
 
-                {/* <StaticContainer style={{height: '902px'}}>
+                {/* <StaticContainer>
                     <Block 
                         data={data.static_blocks[2]}
                         isDescription={false}
                         isGallery={false}
                         highlightedContentWords={[]}
-                        sizes={{titleSizes: {width: '505px', height: '48px'}, contentSizes:{}}}
+                        sizes={{blockSizes: {width: '992px', height: '902px', display: 'flex', flexFlow: 'column'}}}
                     /> 
                 </StaticContainer> */}
             </>
