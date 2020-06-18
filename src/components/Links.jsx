@@ -79,8 +79,6 @@ const Links = (props) => {
     const [isLink, setIsLink] = useState(false);
 
     useEffect(() => {
-        let timerId;
-        console.log(props);
         if (props.copyText === variables.link) {
             setIsLink(true);
         }

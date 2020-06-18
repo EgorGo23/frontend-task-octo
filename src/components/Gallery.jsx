@@ -1,25 +1,47 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { withDataFetching, withGallery } from './hoc';
-import Block from './Block';
+import { withDataFetching } from './hoc';
 
-const Gallery = (props) => {
-    //const {data, isLoading, isError} = dataFetching;
-    console.log(props);
-    
+const Gallery = ({images, sizes}) => {
     const GalleryContainer = styled.div`
-        height: 170px;
-        width: 100%;
         border: 1px solid black;
-    `;
-    
-    return (
-        <GalleryContainer>
-            {
+
+        ul {
+            ${sizes}
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+
+            & > li {
                 
             }
+        }
+    `;
+    const Img = styled.img`
+        width: 314px;
+        height: 170px;
+        border-radius: 8px;
+    `;
+
+    /*
+        Как сделать margin галлерее?
+    */
+    return (
+        <GalleryContainer >
+            <ul>
+                {
+                    images.map((imgUrl) => (
+                        <li key={imgUrl}>
+                            <Img src={imgUrl} />
+                        </li>
+                    ))
+                }
+            </ul>
         </GalleryContainer>
     );
 }
 
-export default withDataFetching(withGallery(Gallery)())();
+export default Gallery;

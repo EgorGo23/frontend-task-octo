@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import variables from '../variables';
-import { compose } from 'recompose';
 
-export const withDataFetching = (Wrapped) => () => {
+
+export const withDataFetching = (Wrapped) => (link) => {
+    console.log(link);
     const WithDataFetchingComponent = () => {
         const [data, setData] = useState(null);
         const [isLoading, setIsLoading] = useState(false);
@@ -14,7 +14,7 @@ export const withDataFetching = (Wrapped) => () => {
                 setIsLoading(true);
 
                 try {
-                    const response = await fetch(variables.link);
+                    const response = await fetch(link);
                     const body = await response.json();
                     
                     setData(body);
@@ -34,25 +34,16 @@ export const withDataFetching = (Wrapped) => () => {
     }
     
     return WithDataFetchingComponent;
-};
-
+}
 
 export const withGallery = (Wrapped) => (props) => {
     const WithGallery = () => {
-        const h = 'egor'
-        
         return (
-            <Wrapped d={h} data={props} />
+            <Wrapped {...props} />
         )
     }
 
     return WithGallery;
 }
 
-
-
-
-
-
-
-
+const GalleryItem = withDataFetching()()

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import highlightWords from '../helpers/highlightWords';
 import Title from './Title';
 import Gallery from './Gallery';
-
+import { withGallery } from './hoc';
 
 const Block = ({data, isDescription, isGallery, highlightedContentWords, sizes}) => {
     const Content = styled.div`
@@ -15,6 +15,10 @@ const Block = ({data, isDescription, isGallery, highlightedContentWords, sizes})
         flex-flow: column;
         align-items: flex-start;
         
+        div[data-gallery='true'] {
+            background: red;
+        }
+
 
         ul {
             padding-left: 15px;
@@ -139,7 +143,9 @@ const Block = ({data, isDescription, isGallery, highlightedContentWords, sizes})
             return acc;
         }, []);
     } 
-    //console.log(getImage(data))
+    
+    const WithGallery = withGallery(Gallery)({images:getImage(data), sizes: {width: '100%', height: ''}});
+
     return (
         <div style={sizes.blockSizes}>  
             <Title tag={'h3'} text={data.title} style={{'margin-bottom': '27px'}} />
@@ -147,7 +153,7 @@ const Block = ({data, isDescription, isGallery, highlightedContentWords, sizes})
             {
                 isGallery
                 && (
-                    <Gallery  />
+                    <WithGallery />
                 )
             }
             {

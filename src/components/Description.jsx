@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import styled from "styled-components";
 import highlightWords from '../helpers/highlightWords';
+import variables from '../variables';
 import { withDataFetching } from './hoc';
 import Title from './Title';
+
 
 const DescriptionContainer = styled.section`
     position: relative;
@@ -51,29 +53,42 @@ const Aside = styled.aside`
 
 
 const Description = ({dataFetching}) => {
+    const {data, isLoading, isError} = dataFetching;
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
     
     useEffect(() => {
-        if (dataFetching.data) {
-            setTitle(dataFetching.data.name);
-            setContent(dataFetching.data.content);
+        if (data) {
+            setTitle(data.name);
+            setContent(data.content);
         }
-    }, [dataFetching.data]);
+    }, [data]);
 
     return (
-        <DescriptionContainer>
-            <Title text={title} tag={'h1'}  style={{width: '100%', height: '65px', 'margin-bottom': '30px'}} />
-            <Content>
-                <div dangerouslySetInnerHTML={{ __html: `${highlightWords(content, ['HOC', 'API'])}` }} />
+        <>
+            {
+                !isLoading && !isError && data
+                && (
+                    <DescriptionContainer>
+                        <Title text={title} tag={'h1'}  style={{width: '100%', height: '65px', 'margin-bottom': '30px'}} />
+                        <Content>
+                            <div dangerouslySetInnerHTML={{ __html: `${highlightWords(content, ['HOC', 'API'])}` }} />
 
-                <Aside>
-                    <p>Этот блок с описанием тоже нужно сверстать. Специально использовали разные стили и текстовые блоки, даже если они порой неуместны</p>
-                </Aside>
-            </Content>
-
-        </DescriptionContainer>
+                            <Aside>
+                                <p>Этот блок с описанием тоже нужно сверстать. Специально использовали разные стили и текстовые блоки, даже если они порой неуместны</p>
+                            </Aside>
+                        </Content>
+                    </DescriptionContainer>
+                ) 
+            }
+            {
+                isLoading 
+                && (
+                    <div>Загрузка...</div>
+                )
+            }
+        </>
     )
 }
 
-export default withDataFetching(Description)();
+export default withDataFetching(Description)(variables.link);
