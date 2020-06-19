@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-
+import connect from 'react-redux';
+import * as actions from '../actions/actions';
 
 export const withDataFetching = (Wrapped) => (link) => {
-    console.log(link);
     const WithDataFetchingComponent = () => {
         const [data, setData] = useState(null);
         const [isLoading, setIsLoading] = useState(false);

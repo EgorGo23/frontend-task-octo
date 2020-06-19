@@ -1,11 +1,13 @@
 import {
+    GET_DATA_FETCH,
     ADD_COPY_TEXT,
-    TOGGLE_MODAL
+    SELECT_IMAGE
 } from '../actions/actions';
 
 const defaultState = {
     copyText: '',
-    isModal: false,
+    imgSrc: null,
+    dataFetch: null,
 };
 
 export const reducer = (state = defaultState, { type, payload }) => {
@@ -16,10 +18,16 @@ export const reducer = (state = defaultState, { type, payload }) => {
                 copyText: payload.text,
             }
         }
-        case TOGGLE_MODAL: {
+        case SELECT_IMAGE: {
             return {
                 ...state,
-                isModal: !state.isModal,
+                imgSrc: payload,
+            }
+        }
+        case GET_DATA_FETCH: {
+            return {
+                ...state,
+                dataFetch: payload
             }
         }
         default: {

@@ -1,21 +1,19 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import { withDataFetching } from './hoc';
 import variables from '../variables';
 import Block from './Block';
 
+const StaticContainer = styled.section`
+    font-family: ${(props) =>
+        (props.theme.fonts)
+        || 'sans-serif'
+    };
+    padding: 0 61px 0 60px;
+    color: ${props => props.theme.colors.black};
+`;
+
 const Static = ({dataFetching}) => {
     const {data, isLoading, isError} = dataFetching;
-    
-    const StaticContainer = styled.section`
-        font-family: ${(props) =>
-            (props.theme.fonts)
-            || 'sans-serif'
-        };
-        padding: 0 61px 0 60px;
-        color: ${props => props.theme.colors.black};
-        border: 1px solid black;
-    `;
     
     return (
         <>
@@ -23,7 +21,7 @@ const Static = ({dataFetching}) => {
                 !isLoading && !isError && data
                 && (
                     <>
-                        <StaticContainer style={{height: '562px'}}>
+                        <StaticContainer style={{marginTop: '20px'}}>
                             <Block 
                                 data={data.static_blocks[0]}
                                 isGallery={true}
@@ -33,7 +31,7 @@ const Static = ({dataFetching}) => {
                             /> 
                         </StaticContainer>
 
-                        {/* <StaticContainer style={{position: 'relative'}}>
+                        <StaticContainer style={{position: 'relative', marginTop: '35px'}}>
                             <Block 
                                 data={data.static_blocks[1]}
                                 isDescription={true}
@@ -41,9 +39,9 @@ const Static = ({dataFetching}) => {
                                 highlightedContentWords={[]}
                                 sizes={{blockSizes: {width: '1015px', height: '621px', display: 'flex', flexFlow: 'column'}}}
                             /> 
-                        </StaticContainer> */}
+                        </StaticContainer>
 
-                        {/* <StaticContainer>
+                        <StaticContainer style={{marginTop: '43px'}}>
                             <Block 
                                 data={data.static_blocks[2]}
                                 isDescription={false}
@@ -51,7 +49,7 @@ const Static = ({dataFetching}) => {
                                 highlightedContentWords={[]}
                                 sizes={{blockSizes: {width: '992px', height: '902px', display: 'flex', flexFlow: 'column'}}}
                             /> 
-                        </StaticContainer> */}
+                        </StaticContainer>
                     </>
                 )
             }
@@ -65,4 +63,4 @@ const Static = ({dataFetching}) => {
     )
 }
 
-export default withDataFetching(Static)(variables.link);
+export default Static;

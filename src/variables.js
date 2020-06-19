@@ -34,6 +34,10 @@ const variables = {
             'font-weight': 'bold',
             'font-size': '40px',
         },
+        'h2': {
+            'font-weight': 'bold',
+            'font-size': '48px',
+        }
     },
     link: 'https://test.octweb.ru/api/pages/index/',
 }

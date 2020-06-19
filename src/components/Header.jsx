@@ -9,6 +9,7 @@ const HeaderContainer = styled.header`
     justify-content: space-between;
     align-items: center;
     box-shadow: ${props => props.theme.shadow};
+    margin-bottom: 46px;
 `;
 
 const Logo = styled.a`
@@ -71,6 +72,7 @@ const Link = styled.li`
         & a {
             display: flex;
             align-items: center;
+            color: ${props => props.theme.colors.blue};
         }
     }
 
@@ -79,6 +81,7 @@ const Link = styled.li`
         text-decoration: none;
         outline: none;
         border: none;
+        color: ${props => props.theme.colors.blue};
 
         &:visited {
             color: ${props => props.theme.colors.blue};
@@ -111,7 +114,6 @@ const Header = () => {
                 </svg>
             </Logo>
             
-
             <nav>
                 <List>
                     <Link><a href="#">Текстовые блоки</a></Link>
