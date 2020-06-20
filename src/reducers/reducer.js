@@ -1,13 +1,13 @@
 import {
-    GET_DATA_FETCH,
+    SET_DATA_FETCH,
     ADD_COPY_TEXT,
     SELECT_IMAGE
 } from '../actions/actions';
 
 const defaultState = {
     copyText: '',
-    imgSrc: null,
-    dataFetch: null,
+    imgInModalSrc: null,
+    dataFetch: {},
 };
 
 export const reducer = (state = defaultState, { type, payload }) => {
@@ -21,13 +21,13 @@ export const reducer = (state = defaultState, { type, payload }) => {
         case SELECT_IMAGE: {
             return {
                 ...state,
-                imgSrc: payload,
+                imgInModalSrc: payload,
             }
         }
-        case GET_DATA_FETCH: {
+        case SET_DATA_FETCH: {
             return {
                 ...state,
-                dataFetch: payload
+                dataFetch: payload,
             }
         }
         default: {

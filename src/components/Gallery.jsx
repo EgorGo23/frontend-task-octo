@@ -2,15 +2,16 @@ import React, { useRef } from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import * as actions from '../actions/actions';
+import { getFormattedImageSrcs } from '../helpers/getFormattedImageSrcs';
 
 const GalleryContainer = styled.div`
-    ${(props) => props.sizes}
+    ${(props) => props.styles || ''};
+
     ul {
-        width: '100%'; 
-        height: '';
+        width: 100%; 
         display: flex;
-        justify-content: space-between;
         align-items: center;
+        justify-content: space-between;
         list-style: none;
         padding: 0;
         margin: 0;
@@ -18,9 +19,9 @@ const GalleryContainer = styled.div`
 `;
 
 const Img = styled.img`
-    width: 314px;
-    height: 170px;
+    ${props => props.styles || ''}
     border-radius: 8px;
+    
 `;
 
 const Modal = styled.div`
@@ -49,7 +50,7 @@ const Modal = styled.div`
 
 const mapStateToProps = state => {
     const props = {
-        imgSrc: state.imgSrc,
+        imgInModalSrc: state.imgInModalSrc,
     }
     return props;
 };
@@ -59,29 +60,35 @@ const actionCreators = {
 }
 
 const Gallery = (props) => {
-    const galleryRef = useRef(null);
+    const galleryContainerRef = useRef(null);
 
     const openImage = ({ target }) => {
         props.selectImage(target.src);
     }
 
+    const template = 'https://test.octweb.ru/api/crop/media/uploads/gallery/gallery/5.jpg?geometry=';
+    console.log(props.images.map((imgUrl) => {
+        getFormattedImageSrcs(template, imgUrl, props.styles.imgElem);
+        
+    }))
+
     return (
-        <GalleryContainer sizes={props.sizes} ref={galleryRef} >
+        <GalleryContainer styles={props.styles.galleryContainer} ref={galleryContainerRef} >
             <ul>
                 {
                     props.images.map((imgUrl) => (
                         <li key={imgUrl} onClick={(e) => openImage(e)}>
-                            <Img src={imgUrl} />
+                            <Img src={imgUrl} styles={props.styles.imgElem} />
                         </li>
                     ))
                 }
             </ul>
             
             {
-                props.imgSrc
+                props.imgInModalSrc
                 && (
                     <Modal>
-                        <img src={props.imgSrc} />
+                        <img src={props.imgInModalSrc} />
                     </Modal>
                 )
             }

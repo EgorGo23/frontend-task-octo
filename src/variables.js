@@ -30,16 +30,15 @@ const variables = {
             'font-size': '54px',
             
         },
+        'h2': {
+            'font-weight': 'bold',
+            'font-size': '48px',
+        },
         'h3': {
             'font-weight': 'bold',
             'font-size': '40px',
         },
-        'h2': {
-            'font-weight': 'bold',
-            'font-size': '48px',
-        }
     },
-    link: 'https://test.octweb.ru/api/pages/index/',
 }
 
 export default variables;

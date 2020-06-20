@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import highlightWords from '../helpers/highlightWords';
-import Title from './Title';
-import Gallery from './Gallery';
-import { withGallery } from './hoc';
+import highlightWords from '../../helpers/highlightWords';
+import Title from '../Title';
+import Gallery from '../Gallery';
 
 const Content = styled.div`
     flex-grow: 1;
@@ -144,8 +143,6 @@ const Block = ({data, isDescription, isGallery, highlightedContentWords, sizes})
         }, []);
     } 
     
-    const WithGallery = withGallery(Gallery)({images:getImage(data), sizes: {'margin-bottom': '10px'}});
-
     return (
         <div style={sizes.blockSizes}>  
             <Title tag={'h3'} text={data.title} style={{'margin-bottom': '27px'}} />
@@ -153,7 +150,7 @@ const Block = ({data, isDescription, isGallery, highlightedContentWords, sizes})
             {
                 isGallery
                 && (
-                    <WithGallery />
+                    <Gallery images={getImage(data)} styles={{galleryContainer: {'margin-bottom': '10px', width: '100%'}, imgElem: {width: '314px', height: '170px'}}} />
                 )
             }
             {

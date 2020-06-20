@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from "react";
-import connect from 'react-redux';
-import * as actions from '../actions/actions';
 
 export const withDataFetching = (Wrapped) => (link) => {
     const WithDataFetchingComponent = () => {
@@ -29,21 +27,10 @@ export const withDataFetching = (Wrapped) => (link) => {
         }, []);
         
         return (
-            <Wrapped dataFetching={{data, isLoading, isError}} />
+            <Wrapped dataFromApi={{data, isLoading, isError}} />
         )
     }
     
     return WithDataFetchingComponent;
 }
 
-export const withGallery = (Wrapped) => (props) => {
-    const WithGallery = () => {
-        return (
-            <Wrapped {...props} />
-        )
-    }
-
-    return WithGallery;
-}
-
-const GalleryItem = withDataFetching()()
