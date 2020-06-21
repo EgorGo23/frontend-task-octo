@@ -130,7 +130,7 @@ const Description = styled.aside`
     color: ${props => props.theme.colors.gray};
     position: absolute;
     top: 0;
-    right: 0;
+    right: 61px;
 `;
 
 const Block = ({data, isDescription, isGallery, highlightedContentWords, sizes}) => {

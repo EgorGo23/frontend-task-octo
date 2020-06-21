@@ -1,8 +1,9 @@
-import React, { useRef } from 'react';
+import React, { useRef, useEffect, useState, useLayoutEffect } from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import * as actions from '../actions/actions';
-import { getFormattedImageSrcs } from '../helpers/getFormattedImageSrcs';
+import getFormattedImageSrcs from '../helpers/getFormattedImageSrcs';
+import howManyElemsFitInBlock from '../helpers/howManyElemsFitInBlock';
 
 const GalleryContainer = styled.div`
     ${(props) => props.styles || ''};
@@ -48,6 +49,10 @@ const Modal = styled.div`
     }
 `;
 
+const RestPhoto = styled.button`
+
+`;
+
 const mapStateToProps = state => {
     const props = {
         imgInModalSrc: state.imgInModalSrc,
@@ -60,23 +65,30 @@ const actionCreators = {
 }
 
 const Gallery = (props) => {
-    const galleryContainerRef = useRef(null);
+    const galleryRef = useRef();
+    const [galleryDimensions, setDimensions] = useState(null);
+    
+    useEffect(() => {
+        setDimensions(galleryRef.current.offsetWidth);
+    }, [])
 
     const openImage = ({ target }) => {
         props.selectImage(target.src);
     }
 
-    const template = 'https://test.octweb.ru/api/crop/media/uploads/gallery/gallery/5.jpg?geometry=';
-    console.log(props.images.map((imgUrl) => {
-        getFormattedImageSrcs(template, imgUrl, props.styles.imgElem);
-        
-    }))
+    const formattedSrcs = props.images.map((imgUrl) => {
+        const imgName = imgUrl.match(/\d.*/)[0];
+        const template = 'https://test.octweb.ru/api/crop/media/uploads/gallery/gallery/';
 
+        return template + `${imgName}` + '?geometry=' + `${parseInt(props.styles.imgElem.width, 10)}x${parseInt(props.styles.imgElem.height, 10)}`
+    });
+    
+    
     return (
-        <GalleryContainer styles={props.styles.galleryContainer} ref={galleryContainerRef} >
+        <GalleryContainer styles={props.styles.galleryContainer} ref={galleryRef} >
             <ul>
                 {
-                    props.images.map((imgUrl) => (
+                    formattedSrcs.slice(0, howManyElemsFitInBlock(galleryDimensions,props.styles.imgElem.width)).map((imgUrl) => (
                         <li key={imgUrl} onClick={(e) => openImage(e)}>
                             <Img src={imgUrl} styles={props.styles.imgElem} />
                         </li>

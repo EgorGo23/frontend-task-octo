@@ -8,7 +8,8 @@ import Title from '../Title';
 
 const DescriptionContainer = styled.section`
     position: relative;
-    width: 1320px;
+    padding: 0 60px;
+    width: 100%;
     height: 323px;
     margin: 0 auto;
     font-family: ${(props) =>

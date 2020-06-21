@@ -10,6 +10,7 @@ const GalleryContainer = styled.section`
     width: 100%;
     height: 543px;
     border: 1px solid black;
+    padding: 0 61px 0 60px;
 `;
 
 const mapStateToProps = state => {
