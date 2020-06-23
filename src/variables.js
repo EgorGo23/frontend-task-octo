@@ -12,8 +12,10 @@ const variables = {
         XXXlarge: '54px',
     },
     colors: {
+        white: '#FFFFFF',
         black: '#333333',
         gray: '#ADADAD',
+        light_gray: '#FAF9FA',
         blue: '#00A4F7',
         hoverBlue: '#128ACE',
     },

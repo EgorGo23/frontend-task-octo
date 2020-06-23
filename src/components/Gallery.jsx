@@ -5,11 +5,16 @@ import * as actions from '../actions/actions';
 import getFormattedImageSrc from '../helpers/getFormattedImageSrc';
 import howManyElemsFitInBlock from '../helpers/howManyElemsFitInBlock';
 import Modal from './Modal';
+import GalleryImg from './GalleryImg';
 
 const GalleryContainer = styled.div`
     ${(props) => props.styles || ''};
 
     ul {
+        font-family: ${(props) =>
+            (props.theme.fonts)
+            || 'sans-serif'
+        };
         width: 100%; 
         display: flex;
         align-items: center;
@@ -28,17 +33,7 @@ const GalleryItem = styled.li`
     position: relative;
 `;
 
-const Img = styled.img`
-    border-radius: 8px;
-`;
 
-const LastItemWrapper = styled.div`
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: rgba(0.51, 0.51, 0.51, 0.5);
-    border-radius: 8px;
-`;
 
 const mapStateToProps = state => {
     const props = {
@@ -51,37 +46,40 @@ const actionCreators = {
     selectImage: actions.selectImage,
 }
 
+
 const Gallery = (props) => {
     const galleryRef = useRef();
-    const imgRef = useRef();
-    const [galleryDimensions, setGalleryDimensions] = useState(null);
-    const [imgDimensions, setImgDimensions] = useState(null);
-    
+    const [galleryDimensions, setGalleryDimensions] = useState({});
+
     useEffect(() => {
-        setGalleryDimensions(galleryRef.current.offsetWidth);
-        //setImgDimensions(imgRef.current.offsetWidth);
-        console.log(galleryRef.current);
+        setGalleryDimensions({
+            width: galleryRef.current.offsetWidth,
+            height: galleryRef.current.offsetHeight,
+        });
+        
     }, [])
     
     const openImage = ({ target }) => {
-        props.selectImage(target.src);
+        props.selectImage(target.src || target.dataset.src);
     }
 
     const formattedSrcs = props.images.map((imgUrl) => getFormattedImageSrc(imgUrl, props.styles.galleryElm));
-    
+
     return (
         <GalleryContainer styles={props.styles.galleryContainer} ref={galleryRef} >
             <ul>
                 {
-                    formattedSrcs.slice(0, howManyElemsFitInBlock(galleryDimensions, props.styles.galleryElm.width)).map((imgUrl, ind, array) => (
+                    formattedSrcs.slice(0, howManyElemsFitInBlock(galleryDimensions.width, props.styles.galleryElm.width)).map((imgUrl, ind, array) => (
                         <GalleryItem key={imgUrl} onClick={(e) => openImage(e)} styles={props.styles.galleryElm}>
-                                <Img src={imgUrl} ref={imgRef} />
-                                {
-                                    ind === array.length - 1 &&
-                                    (
-                                        <LastItemWrapper />
-                                    )
+                            <GalleryImg 
+                                src={imgUrl}
+                                rest={
+                                    (formattedSrcs.length > howManyElemsFitInBlock(galleryDimensions.width, props.styles.galleryElm.width)) &&
+                                    (ind === array.length - 1)
+                                    && formattedSrcs.length - howManyElemsFitInBlock(galleryDimensions.width, props.styles.galleryElm.width)
                                 }
+                                styles={props.styles.img}
+                            />
                         </GalleryItem>
                     ))
                 }
@@ -103,3 +101,5 @@ const Gallery = (props) => {
 }
 
 export default connect(mapStateToProps, actionCreators)(Gallery);
+
+

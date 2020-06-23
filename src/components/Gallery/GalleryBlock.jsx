@@ -9,8 +9,28 @@ import Link from '../Link';
 const GalleryContainer = styled.section`
     width: 100%;
     height: 543px;
-    border: 1px solid black;
     padding: 0 61px 0 60px;
+    margin-top: 90px;
+
+    p {
+        font-family: ${(props) =>
+            (props.theme.fonts)
+            || 'sans-serif'
+        };
+        font-size: ${(props) => props.theme.fontSizes.md};
+        font-weight: ${props => props.theme.fontWeights.normal};
+        color: ${props => props.theme.colors.black};
+        line-height: 160%;
+
+        &:nth-of-type(2) {
+            font-size: ${(props) => props.theme.fontSizes.sm};
+        }
+
+        &:nth-of-type(3) {
+            font-size: ${(props) => props.theme.fontSizes.xs};
+            line-height: 150%;
+        }
+    }
 `;
 
 const mapStateToProps = state => {
@@ -41,11 +61,11 @@ const GalleryBlock = ({dataFetch}) => {
                 <p>
                     Все просто. Выводится столько фотографий сколько влезит на экран. Те что не влезли рассчитываются и выводится их количество над последней фотографией. По клику на эту подпись так же открывается увеличенное версия того изображения, над которым выводится подпись.
                 </p>
-                <Gallery images={galleryItemSrc} styles={{galleryContainer: {width: '100%'}, galleryElm: {width: '202px', height: '130px'}}} />
+                <Gallery images={galleryItemSrc} styles={{galleryContainer: {width: '100%', margin: '26px 0 32px 0'}, galleryElm: {width: '202px', height: '130px'}, img: {}}} />
                 <p>
                     Для того, чтобы на странице мы выводили изображение фактического нужного размера, а не просто уменьшали заведомо большее изображения, есть такая возможность:
                 </p>
-                <Link styles={{width: '1097px', height: '44px'}} resource={'https://test.octweb.ru/api/crop/media/uploads/gallery/gallery/6.jpeg?geometry=420x240&crop=center'} />
+                <Link styles={{width: '1097px', height: '44px', margin: '13px 0 19px 0'}} resource={'https://test.octweb.ru/api/crop/media/uploads/gallery/gallery/6.jpeg?geometry=420x240&crop=center'} />
                 <p>
                     В параметре geometry можно задать размеры для изображения, а в crop выбрать тип кадрирования (center, top, bottom) или вообще его не указывать и тогда изображение пропорционально будет «вписано» в указнные размеры.
                 </p>

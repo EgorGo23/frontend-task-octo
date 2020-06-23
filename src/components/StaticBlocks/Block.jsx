@@ -150,7 +150,7 @@ const Block = ({data, isDescription, isGallery, highlightedContentWords, sizes})
             {
                 isGallery
                 && (
-                    <Gallery images={getImage(data)} styles={{galleryContainer: {'margin-bottom': '10px', width: '100%'}, imgElem: {width: '314px', height: '170px'}}} />
+                    <Gallery images={getImage(data)} styles={{galleryContainer: {'margin-bottom': '10px', width: '100%'}, galleryElm: {width: '314px', height: '170px'}, img: {width: '100%', height: '100%'}}} />
                 )
             }
             {

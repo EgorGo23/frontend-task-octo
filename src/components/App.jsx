@@ -10,7 +10,7 @@ import Description from './Description/Description';
 import Resources from './Resourses/Resources';
 import Static from './StaticBlocks/Static';
 import GalleryBlock from './Gallery/GalleryBlock';
-import Link from './Link';
+import FormBlock from './Form/FormBlock';
 
 const Container = styled.div`
     width: 1440px;
@@ -38,7 +38,7 @@ const App = (props) => {
 
 
     const handleClick = ({ target }) => {
-        if (target.tagName !== 'IMG') {
+        if (!target.dataset.src) {
             props.selectImage(null);
         }
     }
@@ -65,8 +65,9 @@ const App = (props) => {
                 {/* <Header />
                 <Description />
                 <Resources />
-                <Static /> */}
-                <GalleryBlock />
+                <Static />
+                <GalleryBlock /> */}
+                <FormBlock />
             </Container>
         </Theme>
     );

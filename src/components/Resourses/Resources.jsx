@@ -17,6 +17,7 @@ const ResourcesContainer = styled.section`
         justify-content: space-between;
         position: relative;
     }
+    margin-top: 40px;
 `;
 
 const Title = styled.p`

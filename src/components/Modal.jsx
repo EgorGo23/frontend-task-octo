@@ -64,7 +64,6 @@ const Modal = (props) => {
             return `${srcWithoutSize}${wrapperDimensions.width}x${wrapperDimensions.height}`;
         }
     }
-
     return (
         <ModalContainer>
             <div ref={wrapperRef}>

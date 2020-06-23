@@ -17,6 +17,7 @@ const DescriptionContainer = styled.section`
         || 'sans-serif'
     };
     color: ${props => props.theme.colors.black};
+    margin-top: 46px;
 `;
 
 
@@ -78,7 +79,7 @@ const Description = ({dataFetch}) => {
         !!dataFetch.data
         && (
             <DescriptionContainer>
-                <Title text={title} tag={'h1'}  style={{width: '100%', height: '65px', 'margin-bottom': '30px'}} />
+                <Title text={title} tag={'h1'} style={{width: '100%', height: '65px', 'margin-bottom': '30px'}} />
                 <Content>
                     <div dangerouslySetInnerHTML={{ __html: `${highlightWords(content, ['HOC', 'API'])}` }} />
 

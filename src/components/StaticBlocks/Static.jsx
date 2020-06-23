@@ -37,7 +37,7 @@ const Static = ({dataFetch}) => {
         staticBlocksData.length !== 0 
         && (
             <>
-                <StaticContainer style={{marginTop: '20px'}}>
+                <StaticContainer style={{marginTop: '40px'}}>
                     <Block 
                         data={staticBlocksData[0]}
                         isGallery={true}

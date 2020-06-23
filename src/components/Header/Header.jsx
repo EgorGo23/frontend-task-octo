@@ -9,7 +9,6 @@ const HeaderContainer = styled.header`
     justify-content: space-between;
     align-items: center;
     box-shadow: ${props => props.theme.shadow};
-    margin-bottom: 46px;
 `;
 
 const Logo = styled.a`
