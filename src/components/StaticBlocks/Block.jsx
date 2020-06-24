@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import highlightWords from '../../helpers/highlightWords';
-import Title from '../Title';
 import Gallery from '../Gallery';
 
 const Content = styled.div`
@@ -133,6 +132,12 @@ const Description = styled.aside`
     right: 61px;
 `;
 
+const Title = styled.h3`
+    ${props => props.theme.heading_styles.common_properties}
+    ${props => props.theme.heading_styles.h3}
+    margin-bottom: 27px;
+`;
+
 const Block = ({data, isDescription, isGallery, highlightedContentWords, sizes}) => {
     const getImage = (data) => {
         return isGallery && Object.keys(data).reduce((acc, current) => {
@@ -145,7 +150,7 @@ const Block = ({data, isDescription, isGallery, highlightedContentWords, sizes})
     
     return (
         <div style={sizes.blockSizes}>  
-            <Title tag={'h3'} text={data.title} style={{'margin-bottom': '27px'}} />
+            <Title>{data.title}</Title>
             <Content dangerouslySetInnerHTML={{ __html: `${highlightWords(data.content, highlightedContentWords)}` }}></Content>
             {
                 isGallery

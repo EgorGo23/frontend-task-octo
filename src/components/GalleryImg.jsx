@@ -33,7 +33,7 @@ const GalleryImg = (props) => {
             width: imgRef.current.offsetWidth,
             height: imgRef.current.offsetHeight,
         });
-    }, [])
+    }, [imgRef])
     
     return (
         <>

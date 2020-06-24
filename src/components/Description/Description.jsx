@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { connect } from 'react-redux';
 import * as actions from '../../actions/actions';
 import highlightWords from '../../helpers/highlightWords';
-import Title from '../Title';
 
 
 const DescriptionContainer = styled.section`
@@ -53,6 +52,15 @@ const Aside = styled.aside`
     margin-top: 4px;
 `;
 
+const Title = styled.h1`
+    ${props => props.theme.heading_styles.common_properties}
+    ${props => props.theme.heading_styles.h1}
+    
+    width: 100%;
+    height: 65px;
+    margin-bottom: 30px;
+`;
+
 const mapStateToProps = state => {
     const props = {
         dataFetch: state.dataFetch,
@@ -79,7 +87,7 @@ const Description = ({dataFetch}) => {
         !!dataFetch.data
         && (
             <DescriptionContainer>
-                <Title text={title} tag={'h1'} style={{width: '100%', height: '65px', 'margin-bottom': '30px'}} />
+                <Title>{title}</Title>
                 <Content>
                     <div dangerouslySetInnerHTML={{ __html: `${highlightWords(content, ['HOC', 'API'])}` }} />
 

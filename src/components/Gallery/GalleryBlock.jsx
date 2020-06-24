@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import * as actions from '../../actions/actions';
-import Title from '../Title';
 import Gallery from '../Gallery';
 import Link from '../Link';
 
@@ -33,6 +32,12 @@ const GalleryContainer = styled.section`
     }
 `;
 
+const Title = styled.h2`
+    ${props => props.theme.heading_styles.common_properties}
+    ${props => props.theme.heading_styles.h2}
+    margin-bottom: 19px;
+`;
+
 const mapStateToProps = state => {
     const props = {
         dataFetch: state.dataFetch,
@@ -57,7 +62,7 @@ const GalleryBlock = ({dataFetch}) => {
         galleryItemSrc.length !== 0
         && (
             <GalleryContainer>
-                <Title tag={'h2'} text={'Галерея с изображениями'} style={{'margin-bottom': '19px'}} />
+                <Title>Галерея с изображениями</Title>
                 <p>
                     Все просто. Выводится столько фотографий сколько влезит на экран. Те что не влезли рассчитываются и выводится их количество над последней фотографией. По клику на эту подпись так же открывается увеличенное версия того изображения, над которым выводится подпись.
                 </p>

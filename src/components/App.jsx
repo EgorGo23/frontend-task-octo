@@ -14,7 +14,7 @@ import FormBlock from './Form/FormBlock';
 
 const Container = styled.div`
     width: 1440px;
-    background-color: #fff;
+    background-color: ${props => props.theme.colors.white};
     margin: 0 auto;
     position: relative;
 `;
@@ -65,8 +65,8 @@ const App = (props) => {
                 {/* <Header />
                 <Description />
                 <Resources />
-                <Static />
-                <GalleryBlock /> */}
+                <Static /> */}
+                <GalleryBlock />
                 <FormBlock />
             </Container>
         </Theme>
