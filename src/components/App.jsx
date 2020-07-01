@@ -66,7 +66,7 @@ const App = (props) => {
                 <Description />
                 <Resources />
                 <Static /> */}
-                <GalleryBlock />
+                {/* <GalleryBlock /> */}
                 <FormBlock />
             </Container>
         </Theme>
