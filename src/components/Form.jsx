@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import InputMask from 'react-input-mask';
-import check from '../public/check.svg';
 
 const FormContainer = styled.form`
     font-family: ${(props) =>
@@ -28,7 +27,6 @@ const FormContainer = styled.form`
         height: 50px;
         background: ${props => props.theme.colors.white};
         outline: none;
-        border: 1px solid #ADADAD;
         border-radius: 5px;
 
         &:placeholder {
@@ -43,7 +41,12 @@ const FormContainer = styled.form`
         }
     }
 
+    & > input:not([name='email']) {
+        border: 1px solid ${props => props.theme.colors.gray};
+    }
+
     & > textarea {
+        outline: none;
         width: 538px;
         margin-bottom: 30px;
         height: 130px;
@@ -175,15 +178,29 @@ const SuccessMessage = styled.div`
     display: flex;
     flex-flow: column;
     align-items: flex-start;
+
+    svg {
+        margin-bottom: 18px;
+    }
+
+    p {
+        width: 325px;
+        height: 116px;
+    }
 `;
 
 const ErrorMes = styled.div`
-    opacity: ${props => props.isError ? 1 : 0};
+    opacity: 0;
+    opacity: ${props => props.isError === 'invalid' && 1 };
     position: absolute;
     color: ${props => props.theme.colors.error_color};
     top: 207px;
 `;
 
+const EmailInput = styled.input`
+    border: 1px solid ${props => props.theme.colors.gray};
+    border: ${props => props.isval === 'invalid' && `2px solid ${props.theme.colors.error_color}`}
+`;
 
 const Form = () => {
     const [formFields, setFormFields] = useState({
@@ -192,41 +209,42 @@ const Form = () => {
         email: '',
         message: '',
         isChecked: false,
-        emailValid: false,
+        emailValid: 'start',
         formValid: false,   
         formSubmitted: false,
     });
     
-    useState(() => {
-        if (formFields.email.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i)) {
+    useEffect(() => {
+        const timerId = setTimeout(() => (
             setFormFields({
                 ...formFields,
-                emailValid: true,
+                formSubmitted: false
+            })
+        ), 4000);
+    }, [formFields.formSubmitted])
+
+    const handleSubmit = (e) => {
+        event.preventDefault();
+        
+        // Email validation
+        if (formFields.email.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i)) {
+            setFormFields({
+                name: '',
+                tel: '',
+                email: '',
+                message: '',
+                isChecked: false,
+                emailValid: 'valid',
                 formValid: true,
+                formSubmitted: true,
             })
         } else {
             setFormFields({
                 ...formFields,
-                emailValid: false,
+                emailValid: 'invalid',
                 formValid: false,
             })
         }
-    })
-
-
-    const handleSubmit = () => {
-        event.preventDefault();
-        
-        setFormFields({
-            name: '',
-            tel: '',
-            email: '',
-            message: '',
-            isChecked: false,
-            emailValid: false,
-            formValid: false,   
-            formSubmitted: true,
-        })
     }
 
     const handleChange = ({target}) => {
@@ -250,7 +268,9 @@ const Form = () => {
                 setFormFields({
                     ...formFields,
                     email: target.value,
-                });
+                    emailValid: 'start'
+                })
+
                 break;
             }
             case 'mes': {
@@ -270,8 +290,6 @@ const Form = () => {
             default: 
                 break;
         }
-
-        
     }   
     
     return (
@@ -297,13 +315,13 @@ const Form = () => {
             />
             <span type='description'>Для телефона нужна маска для ввода</span>
 
-            <input 
-                type="email" 
+            <EmailInput 
+                type="text" 
                 name="email" 
                 placeholder="Электронная почта" 
                 onChange={(e) => handleChange(e)}
                 value={formFields.email}
-                valid={String(formFields.emailValid)}
+                isval={formFields.emailValid}
             />
             <ErrorMes isError={formFields.emailValid}>Некорректный email</ErrorMes>
             <span type='description'>Почту нужно валидировать, что пользователь точно указал адекватный и похожий на настоящий адрес</span>
@@ -342,7 +360,11 @@ const Form = () => {
                     <button 
                         type="submit"
                         disabled={
-                            !emailValid && formFields.message.length === 0 && !formFields.isChecked
+                            formFields.tel.length === 0 || 
+                            formFields.tel.includes('_') ||
+                            formFields.email.length === 0 || 
+                            formFields.message.length === 0 || 
+                            !formFields.isChecked
                         }
                     >
                         Отправить сообщение
