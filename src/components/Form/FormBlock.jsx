@@ -12,7 +12,6 @@ const FormBlockContainer = styled.section`
     margin: 0 auto;
     width: 100%;
     height: 777px;
-    border: 1px solid black;
     position: relative;
     margin-top: 190px;
     background: ${props => props.theme.colors.light_gray};

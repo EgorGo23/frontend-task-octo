@@ -11,6 +11,7 @@ import Resources from './Resourses/Resources';
 import Static from './StaticBlocks/Static';
 import GalleryBlock from './Gallery/GalleryBlock';
 import FormBlock from './Form/FormBlock';
+import Footer from './Footer/Footer';
 
 const Container = styled.div`
     width: 1440px;
@@ -62,12 +63,13 @@ const App = (props) => {
                 )
             }
             <Container onClick={(e) => handleClick(e)}>
-                {/* <Header />
+                <Header />
                 <Description />
                 <Resources />
-                <Static /> */}
-                {/* <GalleryBlock /> */}
+                <Static />
+                <GalleryBlock />
                 <FormBlock />
+                <Footer />
             </Container>
         </Theme>
     );
