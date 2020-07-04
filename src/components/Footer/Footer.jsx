@@ -1,18 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import { Link } from "react-scroll";
 import { connect } from 'react-redux';
 import * as actions from '../../actions/actions';
 import variables from '../../variables';
 
 const mapStateToProps = state => {
     const props = {
-        copyText: state.copyText,
+        
     }
     return props;
 };
 
 const actionCreators = {
-    addCopiedText: actions.addCopiedText,
+    
 }
 
 
@@ -43,6 +44,30 @@ const Contacts = styled.div`
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
+
+    .btn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        outline: none;
+        font-weight: ${props => props.theme.fontWeights.bold};
+        font-size: ${props => props.theme.fontSizes.sm};
+        width: 205px;
+        height: 50px; 
+        cursor: pointer;
+        line-height: 160%;
+        text-align: center;
+        color: ${props => props.theme.colors.blue};
+        border: 2px solid ${props => props.theme.colors.blue};
+        border-radius: 8px;
+        background: ${props => props.theme.colors.white};
+        transition: all 0.4s;
+
+        &:hover {
+            color: ${props => props.theme.colors.white};
+            background: ${props => props.theme.colors.blue};
+        }
+    }
 `;
 
 const AddressContainer = styled.div`
@@ -73,26 +98,6 @@ const AddressBlock = styled.div`
         line-height: 160%;
         width: 427px;
         height: 32px;
-    }
-`;
-
-const Button = styled.button`
-    font-weight: ${props => props.theme.fontWeights.bold};
-    font-size: ${props => props.theme.fontSizes.sm};
-    width: 205px;
-    height: 50px; 
-    cursor: pointer;
-    line-height: 160%;
-    text-align: center;
-    color: ${props => props.theme.colors.blue};
-    border: 2px solid ${props => props.theme.colors.blue};
-    border-radius: 8px;
-    background: ${props => props.theme.colors.white};
-    transition: all 0.4s;
-
-    &:hover {
-        color: ${props => props.theme.colors.white};
-        background: ${props => props.theme.colors.blue};
     }
 `;
 
@@ -148,7 +153,10 @@ const BottomLine = styled.div`
 `;
 
 const Footer = (props) => {
-    
+    // useEffect(() => {
+    //     const block1 = document.getElementById('form_block')
+    //     console.log(block1)
+    // })
     
     return (
         <FooterContainer>
@@ -164,16 +172,53 @@ const Footer = (props) => {
                         <p>+7 (981) 131-64-98</p>
                     </AddressBlock>
                 </AddressContainer>
-                <Button>
+                <Link
+                    to='header_block'
+                    spy={true}
+                    smooth={true}
+                    offset={-70}
+                    duration={500}
+                    className='btn'
+                >
                     Написать нам
-                </Button>
+                </Link>
             </Contacts>
             <NavPanel>
                 <Nav>
                     <ul>
-                        <li>Текстовые блоки</li>
-                        <li>Галерея</li>
-                        <li>Форма</li>
+                        <li>
+                            <Link
+                                to='static_block1'
+                                spy={true}
+                                smooth={true}
+                                offset={-70}
+                                duration={500}
+                            >
+                                Текстовые блоки
+                            </Link>
+                        </li>
+                        <li>
+                            <Link
+                                to='gallery_block'
+                                spy={true}
+                                smooth={true}
+                                offset={-70}
+                                duration={500}
+                            >
+                                Галерея
+                            </Link>
+                        </li>
+                        <li>
+                            <Link
+                                to='form_block'
+                                spy={true}
+                                smooth={true}
+                                offset={-70}
+                                duration={500}
+                            >
+                                Форма
+                            </Link>
+                        </li>
                     </ul>
                 </Nav>
                 <Сopyright>

@@ -47,6 +47,9 @@ const variables = {
             'line-height': '140%',
         }
     },
+    breakpoints: {
+        mobile: 400,
+    },
     formImg: 'https://s3-alpha-sig.figma.com/img/4a72/9b89/7836fccc116cc687f23809d5e4467ee9?Expires=1593993600&Signature=RgXUmuFHLQZk~qDdLgAASzp98luRnYSkym50Kfu9RiITzo9ElW9JyI39oFWif43UPeZBroYlv9WkAZkdKfX4mTdUAnC03W5UbkE3XjkhgpIqq1TKGNaku-G01a4R1etT5ebqGeHYQPpMtU~KJhAY~oSxDbwJcgrA3C4A9Lk9bDOzP2WQvSpJRrsTP6WRqUnZf~JVxZEUh06FyDBPQGlLxI5T4mxqwBMbtDWftwl~PlnvIbPbsu~5BvkeASYXdalv-WhUOat9bd6uF6fR1KlmNhhbl1Qg1k2TONLmxAZ8uxEIS-vZ-r0niEaudC5HJxv0GsOdNWiaZd1~CXIoIaerzQ__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA',
 }
 

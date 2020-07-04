@@ -37,7 +37,7 @@ const Static = ({dataFetch}) => {
         staticBlocksData.length !== 0 
         && (
             <>
-                <StaticContainer style={{marginTop: '40px'}}>
+                <StaticContainer style={{marginTop: '40px'}} id='static_block1'>
                     <Block 
                         data={staticBlocksData[0]}
                         isGallery={true}
@@ -47,7 +47,7 @@ const Static = ({dataFetch}) => {
                     /> 
                 </StaticContainer>
 
-                <StaticContainer style={{position: 'relative', marginTop: '35px'}}>
+                <StaticContainer style={{position: 'relative', marginTop: '35px'}} id='static_block2'>
                     <Block 
                         data={staticBlocksData[1]}
                         isDescription={true}
@@ -57,7 +57,7 @@ const Static = ({dataFetch}) => {
                     /> 
                 </StaticContainer>
 
-                <StaticContainer style={{marginTop: '43px'}}>
+                <StaticContainer style={{marginTop: '43px'}} id='static_block3'>
                     <Block 
                         data={staticBlocksData[2]}
                         isDescription={false}

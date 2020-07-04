@@ -1,23 +1,20 @@
 import {
     SET_DATA_FETCH,
-    ADD_COPY_TEXT,
-    SELECT_IMAGE
+    SELECT_IMAGE,
+    SET_WINDOW_SIZE
 } from '../actions/actions';
 
 const defaultState = {
-    copyText: '',
     imgInModalSrc: null,
     dataFetch: {},
+    windowSize: {
+        width: window.innerWidth,
+        height: window.innerHeight,
+    },
 };
 
 export const reducer = (state = defaultState, { type, payload }) => {
     switch (type) {
-        case ADD_COPY_TEXT: {
-            return {
-                ...state,
-                copyText: payload.text,
-            }
-        }
         case SELECT_IMAGE: {
             return {
                 ...state,
@@ -28,6 +25,12 @@ export const reducer = (state = defaultState, { type, payload }) => {
             return {
                 ...state,
                 dataFetch: payload,
+            }
+        }
+        case SET_WINDOW_SIZE: {
+            return {
+                ...state,
+                windowSize: payload,
             }
         }
         default: {

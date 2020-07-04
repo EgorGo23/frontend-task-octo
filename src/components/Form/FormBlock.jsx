@@ -39,7 +39,7 @@ const Title = styled.h2`
 
 const FormBlock = () => {
     return (
-        <FormBlockContainer>
+        <FormBlockContainer id='form_block'>
             <Title>Форма с приветами</Title>
             <img src={variables.formImg} />
             <Form />

@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import * as actions from '../actions/actions';
-import { withDataFetching } from './hoc';
+import { withDataFetching, withResizeWindow } from './hoc';
 import variables from '../variables';
 import Theme from './Theme';
 import Header from './Header/Header';
@@ -18,11 +18,17 @@ const Container = styled.div`
     background-color: ${props => props.theme.colors.white};
     margin: 0 auto;
     position: relative;
+
+    @media (max-width: 400px) {
+        width: 375px;
+        margin: 0;
+    }
 `;
 
 const mapStateToProps = state => {
     const props = {
         dataFetch: state.dataFetch,
+        windowSize: state.windowSize,
     }
     return props;
 };
@@ -43,7 +49,7 @@ const App = (props) => {
             props.selectImage(null);
         }
     }
-    
+
     return (
         <Theme>
             {
@@ -62,17 +68,17 @@ const App = (props) => {
                     <div>Загрузка...</div>
                 )
             }
-            <Container onClick={(e) => handleClick(e)}>
+            <Container onClick={(e) => handleClick(e)} size={props.windowSize}>
                 <Header />
                 <Description />
                 <Resources />
-                <Static />
+                {/* <Static />
                 <GalleryBlock />
                 <FormBlock />
-                <Footer />
+                <Footer /> */}
             </Container>
         </Theme>
     );
 };
 
-export default withDataFetching(connect(mapStateToProps, actionCreators)(App))('https://test.octweb.ru/api/pages/index/');
+export default withResizeWindow(withDataFetching(connect(mapStateToProps, actionCreators)(App))('https://test.octweb.ru/api/pages/index/'))();
