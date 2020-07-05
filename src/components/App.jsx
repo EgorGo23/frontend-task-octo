@@ -69,13 +69,13 @@ const App = (props) => {
                 )
             }
             <Container onClick={(e) => handleClick(e)} size={props.windowSize}>
-                <Header />
+                {/* <Header />
                 <Description />
-                <Resources />
-                {/* <Static />
-                <GalleryBlock />
+                <Resources /> */}
+                {/* <Static /> */}
+                {/* <GalleryBlock /> */}
                 <FormBlock />
-                <Footer /> */}
+                {/* <Footer /> */}
             </Container>
         </Theme>
     );

@@ -24,6 +24,19 @@ const FormBlockContainer = styled.section`
         left: -97px;
         z-index: 0;
 
+        @media (max-width: 400px) {
+            width: 355px;
+            height: 342px;
+            top: -150px;
+            left: -20px;
+        }
+    }
+
+    @media (max-width: 400px) {
+        padding: 0 20px;
+        height: 1228px;
+    }
+
 `;
 
 const Title = styled.h2`
@@ -34,6 +47,14 @@ const Title = styled.h2`
     margin: 49px 0 49px 283px;
     position: relative;
     z-index: 10;
+
+    @media (max-width: 400px) {
+        font-size: 30px;
+        width: 100%;
+        height: 36px;
+        margin: 0;
+        top: 158px;
+    }
 `;
 
 

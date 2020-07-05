@@ -6,6 +6,7 @@ import { Link } from "react-scroll";
 import variables from '../../variables';
 
 const HeaderContainer = styled.header`
+    height: 80px;
     width: 100%;
     padding: 0 60px;
     display: flex;
@@ -14,6 +15,7 @@ const HeaderContainer = styled.header`
     box-shadow: ${props => props.theme.shadow};
 
     @media (max-width: 400px) {
+        heigtht: auto;
         padding: 30px 22px;
         box-shadow: none;
     }

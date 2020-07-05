@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import variables from '../../variables';
 import { connect } from 'react-redux';
 import * as actions from '../../actions/actions';
 import Gallery from '../Gallery';
@@ -30,17 +31,27 @@ const GalleryContainer = styled.section`
             line-height: 150%;
         }
     }
+
+    @media (max-width: 400px) {
+        padding: 0 20px;
+        margin-top: 40px;
+    }
 `;
 
 const Title = styled.h2`
     ${props => props.theme.heading_styles.common_properties}
     ${props => props.theme.heading_styles.h2}
     margin-bottom: 19px;
+
+    @media (max-width: 400px) {
+        font-size: 30px;
+    }
 `;
 
 const mapStateToProps = state => {
     const props = {
         dataFetch: state.dataFetch,
+        windowSize: state.windowSize,
     }
     return props;
 };
@@ -49,7 +60,8 @@ const actionCreators = {
 
 }
 
-const GalleryBlock = ({dataFetch}) => {
+const GalleryBlock = ({dataFetch, windowSize}) => {
+    const breakpoint = variables.breakpoints.mobile;
     const [galleryItemSrc, setGalleryItemSrc] = useState([]);
     
     useEffect(() => {
@@ -66,11 +78,37 @@ const GalleryBlock = ({dataFetch}) => {
                 <p>
                     Все просто. Выводится столько фотографий сколько влезит на экран. Те что не влезли рассчитываются и выводится их количество над последней фотографией. По клику на эту подпись так же открывается увеличенное версия того изображения, над которым выводится подпись.
                 </p>
-                <Gallery images={galleryItemSrc} styles={{galleryContainer: {width: '100%', margin: '26px 0 32px 0'}, galleryElm: {width: '202px', height: '130px'}, img: {}}} />
+                <Gallery 
+                    images={galleryItemSrc} 
+                    styles={
+                        {
+                            galleryContainer: 
+                                {
+                                    width: '100%', 
+                                    margin: '26px 0 32px 0'
+                                }, 
+                            galleryElm: 
+                                {
+                                    width: windowSize.width > breakpoint ? '202px' : '162px', 
+                                    height: windowSize.width > breakpoint ? '130px' : '104px'
+                                }, 
+                            img: {}
+                        }
+                    } 
+                />
                 <p>
                     Для того, чтобы на странице мы выводили изображение фактического нужного размера, а не просто уменьшали заведомо большее изображения, есть такая возможность:
                 </p>
-                <Link styles={{width: '1097px', height: '44px', margin: '13px 0 19px 0'}} resource={'https://test.octweb.ru/api/crop/media/uploads/gallery/gallery/6.jpeg?geometry=420x240&crop=center'} />
+                <Link 
+                    styles={
+                        {
+                            width: windowSize.width > breakpoint ? '1097px' : '100%',
+                            height: windowSize.width > breakpoint ? '44px' : '143px', 
+                            margin: '13px 0 19px 0'
+                        }
+                    } 
+                    resource={'https://test.octweb.ru/api/crop/media/uploads/gallery/gallery/6.jpeg?geometry=420x240&crop=center'} 
+                />
                 <p>
                     В параметре geometry можно задать размеры для изображения, а в crop выбрать тип кадрирования (center, top, bottom) или вообще его не указывать и тогда изображение пропорционально будет «вписано» в указнные размеры.
                 </p>

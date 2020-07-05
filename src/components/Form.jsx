@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import InputMask from 'react-input-mask';
+import variables from '../variables';
+import { connect } from 'react-redux';
+import * as actions from '../actions/actions';
 
 const FormContainer = styled.form`
     font-family: ${(props) =>
@@ -20,6 +23,13 @@ const FormContainer = styled.form`
     z-index: 10;
     background: ${props => props.theme.colors.light_gray};
 
+    @media (max-width: 400px) {
+        margin: 0;
+        width: 100%;
+        height: auto;
+        margin-top: 219px;
+    }
+
     & > input {
         padding: 13px 14px 12px 16px;
         width: 538px;
@@ -38,6 +48,24 @@ const FormContainer = styled.form`
 
         &:focus {
             border: 2px solid ${props => props.theme.colors.blue};
+        }
+
+        @media (max-width: 400px) {
+            width: 100%;
+
+            &:nth-of-type(1) {
+                margin-bottom: 90px;
+            }
+            
+            &:nth-of-type(2) {
+                margin-bottom: 64px;
+            }
+
+            &:nth-of-type(3) {
+                margin-bottom: 140px;
+            }
+
+            
         }
     }
 
@@ -66,7 +94,11 @@ const FormContainer = styled.form`
         &:focus {
             border: 2px solid ${props => props.theme.colors.blue};
         }
-
+        
+        @media (max-width: 400px) {
+            width: 100%;
+            margin-bottom: 85px;
+        }
     }
 
     & > label {
@@ -76,6 +108,12 @@ const FormContainer = styled.form`
         height: 58px;
         width: 526px;
         background: ${props => props.theme.colors.light_gray};
+
+        @media (max-width: 400px) {
+            width: 100%;
+            height: auto;
+            margin-bottom: 20px;
+        }
 
         & > input {
             position: absolute;
@@ -139,6 +177,10 @@ const FormContainer = styled.form`
         &:disabled {
             opacity: 0.25;
         }
+
+        @media (max-width: 400px) {
+            width: 100%;
+        }
     }
 
     & > span[type='description'] {
@@ -148,26 +190,69 @@ const FormContainer = styled.form`
 
         &:nth-of-type(1) {
             top: 11px;
+
+            @media (max-width: 400px) {
+                top: 64px;
+                display: inline-block;
+                width: 335px;
+                height: 58px;
+            }
         }
 
         &:nth-of-type(2) {
             top: 86px;
+
+            @media (max-width: 400px) {
+                top: 189px;
+                display: inline-block;
+                width: 335px;
+                height: 29px;
+            }
         }
         
         &:nth-of-type(3) {
             top: 166px;
+
+            @media (max-width: 400px) {
+                top: 316px;
+                display: inline-block;
+                width: 335px;
+                height: 116px;
+            }
         }
 
         &:nth-of-type(4) {
             top: 241px;
+
+            @media (max-width: 400px) {
+                top: 590px;
+                display: inline-block;
+                width: 335px;
+                height: 58px;
+            }
         }
 
         &:nth-of-type(5) {
             top: 394px;
+
+            @media (max-width: 400px) {
+                top: 775px;
+                display: inline-block;
+                width: 335px;
+                height: 58px;
+                display: none;
+            }
         }
 
         &:nth-of-type(6) {
             top: 482px;
+
+            @media (max-width: 400px) {
+                top: 835px;
+                display: inline-block;
+                width: 335px;
+                height: 116px;
+            }
         }
     }
 
@@ -202,7 +287,19 @@ const EmailInput = styled.input`
     border: ${props => props.isval === 'invalid' && `2px solid ${props.theme.colors.error_color}`}
 `;
 
-const Form = () => {
+const mapStateToProps = state => {
+    const props = {
+        windowSize: state.windowSize,
+    }
+    return props;
+};
+
+const actionCreators = {
+
+}
+
+const Form = ({ windowSize }) => {
+    const breakpoint = variables.breakpoints.mobile;
     const [formFields, setFormFields] = useState({
         name: '',
         tel: '',
@@ -377,4 +474,4 @@ const Form = () => {
     )
 }
 
-export default Form;
+export default connect(mapStateToProps, actionCreators)(Form);

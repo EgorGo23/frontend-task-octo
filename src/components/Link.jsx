@@ -33,10 +33,13 @@ const CopyBtn = styled.button`
             height: 58px;
             word-break: break-all;
             text-align: left;
+            height: 100%;
         }
     }
 
-    
+    @media (max-width: 400px) {
+        align-items: center;
+    }
 `;
 
 const mapStateToProps = state => {

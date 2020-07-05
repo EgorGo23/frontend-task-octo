@@ -31,6 +31,8 @@ const GalleryItem = styled.li`
     align-items: center;
     justify-content: center;
     position: relative;
+
+    
 `;
 
 
