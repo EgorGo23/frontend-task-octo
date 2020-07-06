@@ -33,6 +33,7 @@ const GalleryContainer = styled.section`
     }
 
     @media (max-width: 400px) {
+        height: 1046px;
         padding: 0 20px;
         margin-top: 40px;
     }

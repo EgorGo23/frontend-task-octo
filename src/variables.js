@@ -50,7 +50,7 @@ const variables = {
     breakpoints: {
         mobile: 400,
     },
-    formImg: 'https://s3-alpha-sig.figma.com/img/4a72/9b89/7836fccc116cc687f23809d5e4467ee9?Expires=1593993600&Signature=RgXUmuFHLQZk~qDdLgAASzp98luRnYSkym50Kfu9RiITzo9ElW9JyI39oFWif43UPeZBroYlv9WkAZkdKfX4mTdUAnC03W5UbkE3XjkhgpIqq1TKGNaku-G01a4R1etT5ebqGeHYQPpMtU~KJhAY~oSxDbwJcgrA3C4A9Lk9bDOzP2WQvSpJRrsTP6WRqUnZf~JVxZEUh06FyDBPQGlLxI5T4mxqwBMbtDWftwl~PlnvIbPbsu~5BvkeASYXdalv-WhUOat9bd6uF6fR1KlmNhhbl1Qg1k2TONLmxAZ8uxEIS-vZ-r0niEaudC5HJxv0GsOdNWiaZd1~CXIoIaerzQ__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA',
+    formImg: 'https://s3-alpha-sig.figma.com/img/4a72/9b89/7836fccc116cc687f23809d5e4467ee9?Expires=1595203200&Signature=MLKlxdLmUqahV8ItPkEm-GXgwO0sPOitnDPE56O8juQlLLd1WCko4wAMPjQeUBHzjWvCaxqyJ-zOqo7etf56WxhhhA0sX59-gk50d858er2UB7WpMfTEJzB1D-jDqVYsY3mjWzyiWrWY4FzmReMpsrV~iefO9bf5xl~Jry6mdymSitpLFofLfwa7Pv~JjBbrsjOjJETbYg1gQ~DxjbmPo5fJItkVQP0P8ekrJwoaXX9OJGRppDeVvOA3WOiYcYzYIGqkzKD1XvhcLyiRglasS0aCyGN8HZrNf7S8tlQqwy6bpvyJSa35xJPtA4O~VrkVk0yPImJvPzEkCokSiBan-w__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA',
 }
 
 export default variables;

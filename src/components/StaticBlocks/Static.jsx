@@ -82,7 +82,7 @@ const Static = ({dataFetch, windowSize}) => {
                     /> 
                 </StaticContainer>
 
-                <StaticContainer style={{marginTop: '43px'}} id='static_block3'>
+                <StaticContainer style={{marginTop: '43px', height: windowSize.width > breakpoint ? '902px' : '1605px'}} id='static_block3'>
                     <Block 
                         data={staticBlocksData[2]}
                         isDescription={false}

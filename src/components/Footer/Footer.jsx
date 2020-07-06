@@ -29,6 +29,11 @@ const FooterContainer = styled.footer`
     flex-flow: column;
     background: ${props => props.theme.colors.light_gray};
     position: relative;
+
+    @media (max-width: 400px) {
+        padding: 39px 20px 46px 20px;
+        height: 445px;
+    }
 `;
 
 const TopLine = styled.div`
@@ -37,6 +42,11 @@ const TopLine = styled.div`
     left: 60px;
     width: 1320px;
     border-bottom: 1px solid ${props => props.theme.colors.gray};
+
+    @media (max-width: 400px) {
+        left: 20px;
+        width: 335px;
+    }
 `;
 
 const Contacts = styled.div`
@@ -67,6 +77,15 @@ const Contacts = styled.div`
             color: ${props => props.theme.colors.white};
             background: ${props => props.theme.colors.blue};
         }
+
+        @media (max-width: 400px) {
+            width: 100%;
+        }
+    }
+
+    @media (max-width: 400px) {
+        width: 100%;
+        flex-flow: column;
     }
 `;
 
@@ -74,8 +93,34 @@ const AddressContainer = styled.div`
     display: flex;
     align-items: center;
 
+    & > div {
+        width: 100%;
+    }
+
     & > div:nth-of-type(1) {
         margin-right: 20px;
+
+        @media (max-width: 400px) {
+            flex-flow: column;
+            margin-right: 0;
+            margin-bottom: 24px;
+        }
+    }
+
+    & > div:nth-of-type(2) {
+
+        & > p {
+            @media (max-width: 400px) {
+                height: 32px;
+                margin-bottom: 24px;
+            }
+        }
+        
+    }
+
+    @media (max-width: 400px) {
+        width: 100%;
+        flex-flow: column;
     }
 `;
 
@@ -90,6 +135,13 @@ const AddressBlock = styled.div`
         width: 427px;
         height: 42px;
         margin-bottom: 9px;
+
+        @media (max-width: 400px) {
+            font-size: 20px;
+            margin-bottom: 5px;
+            width: 100%;
+            height: 24px;
+        }
     }
 
     & > p {
@@ -98,6 +150,13 @@ const AddressBlock = styled.div`
         line-height: 160%;
         width: 427px;
         height: 32px;
+
+        @media (max-width: 400px) {
+            font-size: 20px;
+            margin-bottom: 5px;
+            width: 100%;
+            height: 64px;
+        }
     }
 `;
 
@@ -107,6 +166,13 @@ const NavPanel = styled.div`
     align-items: center;
     justify-content: space-between;
     margin-top: 33px;
+
+    @media (max-width: 400px) {
+        position: absolute;
+        bottom: 46px;
+        width: 335px;
+        margin: 0;
+    }
 `;
 
 const Nav = styled.nav`
@@ -121,7 +187,7 @@ const Nav = styled.nav`
         color: ${props => props.theme.colors.blue};
         padding: 0;
         margin: 0;
-        
+        line-height: 160%;
 
         & > li {
             height: 32px; 
@@ -131,7 +197,26 @@ const Nav = styled.nav`
             &:hover {
                 color: ${props => props.theme.colors.hoverBlue};
             }
+
+            @media (max-width: 400px) {
+                &:nth-of-type(1) {
+                    width: 188px;
+                }
+
+                &:nth-of-type(2), &:nth-of-type(3) {
+                    width: 111px;
+                }
+            }
         }
+
+        @media (max-width: 400px) {
+            width: 100%;
+            flex-wrap: wrap;
+        }
+    }
+
+    @media (max-width: 400px) {
+        width: 100%;
     }
 `;
 
@@ -142,6 +227,12 @@ const Сopyright = styled.div`
     font-weight: ${props => props.theme.fontWeights.normal};
     font-size: ${props => props.theme.fontSizes.xs};
     line-height: 150%;
+
+    @media (max-width: 400px) {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+    }
 `;
 
 const BottomLine = styled.div`
@@ -150,13 +241,14 @@ const BottomLine = styled.div`
     left: 60px;
     width: 1320px;
     border-bottom: 3px solid ${props => props.theme.colors.blue};
+
+    @media (max-width: 400px) {
+        width: 335px;
+        left: 20px;
+    }
 `;
 
 const Footer = (props) => {
-    // useEffect(() => {
-    //     const block1 = document.getElementById('form_block')
-    //     console.log(block1)
-    // })
     
     return (
         <FooterContainer>

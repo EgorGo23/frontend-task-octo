@@ -280,6 +280,11 @@ const ErrorMes = styled.div`
     position: absolute;
     color: ${props => props.theme.colors.error_color};
     top: 207px;
+
+    @media (max-width: 400px) {
+        right: 15px;
+        top: 215px;
+    }
 `;
 
 const EmailInput = styled.input`
